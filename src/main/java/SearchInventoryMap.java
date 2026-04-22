@@ -16,6 +16,8 @@ public class SearchInventoryMap {
         Scanner scanner = new Scanner(System.in);
 
 
+
+
         System.out.println("Enter a product name: ");
         String searchName = scanner.nextLine();
 
@@ -33,7 +35,7 @@ public class SearchInventoryMap {
 
     public static void loadInventory() {
         try {
-            BufferedReader reader = new BufferedReader(new FileReader("inventory.csv"));
+            BufferedReader reader = new BufferedReader(new FileReader("src/main/resources/" + "inventory.csv"));
             String input;
 
             while((input = reader.readLine())!=null){
