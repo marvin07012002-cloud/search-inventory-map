@@ -15,22 +15,32 @@ public class SearchInventoryMap {
         loadInventory();
         Scanner scanner = new Scanner(System.in);
 
+        String searchName = "";
+
+        while (!searchName.equalsIgnoreCase("0")){
+            System.out.println("Enter a product name or for exit press 0(cero)");
+            searchName = scanner.nextLine();
+
+            if (searchName.equalsIgnoreCase("0")) {
+                break;
+            }
 
 
+        /*System.out.println("Enter a product name: ");
+        String searchName = scanner.nextLine();*/
 
-        System.out.println("Enter a product name: ");
-        String searchName = scanner.nextLine();
+            Products foundProduct = inventory.get(searchName.toLowerCase());
 
-        Products foundProduct = inventory.get(searchName);
+            if (foundProduct != null) {
+                System.out.printf("%d %s $%.2f%n", foundProduct.getId(), foundProduct.getName(), foundProduct.getPrice());
+            } else {
+                System.err.println("That Product is not here. What are you doing? is no found bro.");
 
-        if (foundProduct != null) {
-            System.out.printf("%d %s $%.2f%n", foundProduct.getId(), foundProduct.getName(), foundProduct.getPrice());
-        } else {
-            System.err.println("Product no found.");
+            }
 
         }
+        System.err.println("Your out, PEAACEEEE");
         scanner.close();
-
     }
 
     public static void loadInventory() {
@@ -47,7 +57,7 @@ public class SearchInventoryMap {
 
                 Products product = new Products (id,name,price);
 
-                inventory.put(name,product);
+                inventory.put(name.toLowerCase(),product);
             }
             reader.close();
 
